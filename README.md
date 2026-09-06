@@ -2,7 +2,8 @@
 
 An [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills) that
 diagnoses and repairs writing that reads flat, generic, or obviously
-AI-written, in fiction and in everyday work documents.
+AI-written, and helps avoid it in the first place, in fiction and in
+everyday work documents.
 
 Most fixes for "AI-sounding" writing only swap out a few words. That barely
 helps. The real problem is usually how the piece is built: a plot that
@@ -14,8 +15,12 @@ own test set, while the structural layer underneath carried the rest.
 
 ## What is in this repo
 
-- `SKILL.md`: the skill itself. Two operations, `review` (diagnose only)
-  and `repair` (fix in order), routed by text type.
+- `SKILL.md`: the skill itself. Three operations: `draft` (interview
+  first, then write), `review` (diagnose only), and `repair` (fix in
+  order), routed by text type.
+- `templates/voice.md` and `templates/style.md`: the starting shape for
+  the two small files `draft` writes against, how the sentences should
+  sound and what the piece has to do.
 - `references/`: the research the skill is built on, one file for fiction
   and narrative essays, one for everyday work documents. Every check names
   the paper it came from and the actual number that paper reported.
@@ -26,14 +31,14 @@ own test set, while the structural layer underneath carried the rest.
   colon in the description field that silently broke GitHub's parser.
 - `examples/`: two short fiction fixtures, one written to trip the
   diagnostic script's flags on purpose, one written not to.
-- `.github/workflows/`: CI that runs both scripts above on every push.
 
 ## Using the skill
 
 Copy this repo, or point an agent at it directly. `SKILL.md` carries its
-own routing table and pass order; read it before using either operation.
+own routing table and pass order; read it before using any operation.
 
 ```
+draft: interview first, then write against voice.md and style.md, then hand off to repair
 review: diagnose only, cite the line that triggered each check, apply nothing
 repair: fix architecture first, then flow, then surface word choice
 ```

@@ -1,6 +1,6 @@
 ---
 name: three-pass-prose-repair
-description: "Fixes writing that reads flat, generic, or obviously AI-written. Most tools that try to fix this only swap out words, which barely helps. This fixes the bigger problem first: how the piece is built, then the flow, then the words last. Two modes: review (diagnose only) and repair (fix it step by step). Works on fiction and on everyday documents such as release notes, PR replies, postmortems, and technical articles."
+description: "Fixes writing that reads flat, generic, or obviously AI-written, and helps avoid the problem before it starts. Most tools that try to fix this only swap out words, which barely helps. This fixes the bigger problem first: how the piece is built, then the flow, then the words last. Three modes: draft (interview first, then write), review (diagnose only), and repair (fix it step by step). Works on fiction and on everyday documents such as release notes, PR replies, postmortems, and technical articles."
 ---
 
 # Fix writing that sounds like AI
@@ -32,11 +32,48 @@ thin, which happen to be the same habits the cited research measured.
 
 | Operation | Contract |
 |---|---|
+| **draft** | Interview first, write second. Ask what the person wants to say, in their own words. Do not supply the meaning, the stake, or the argument for them. Draft against a real voice and style file, section by section. Hand the result to `repair` before calling it done. |
 | **review** | Diagnose only. Do not edit anything. Read the routed reference file. Check the draft against each item in it. Report every match, and quote the specific line or passage that triggered it. Stop there. Apply nothing until asked. |
 | **repair** | Apply fixes in order: Pass 1 architecture, Pass 2 flow, Pass 3 surface word choice. Do the passes in that order. Do not start with Pass 3; the research this skill is built on found that layer moves the least on its own. |
 
-Both operations load the same reference material. `review` reads it as a
-checklist to score against. `repair` reads it as edit instructions.
+`review` and `repair` load the same reference material. `review` reads it
+as a checklist to score against. `repair` reads it as edit instructions.
+`draft` produces the piece those two operations check.
+
+## Draft: interview before you write a word
+
+A lot of AI-sounding writing starts flat for a simple reason: the model
+supplied the meaning, the stake, and the argument itself, on the first
+pass, instead of drawing them out of the person who actually has them.
+`draft` skips that failure instead of fixing it after the fact.
+
+1. **Ask before you write.** Ask what the person wants to say, what they
+   noticed, and why it matters to them, in their own words. Do not name
+   a theme, a stake, or a connection for them. Ask whether they see one.
+   Write down their answers, not an interpretation of their answers.
+2. **Stop when there is enough, not when the list is complete.** A short
+   piece needs a subject and a claim. A longer piece needs a rough shape
+   too. Move to drafting as soon as the person can say what they want to
+   explore. Do not keep asking questions past that point.
+3. **Draft against a real voice and style file, not a guess.** Keep two
+   short files next to the piece: one for how the sentences should
+   sound, one for what the piece has to do. `templates/voice.md` and
+   `templates/style.md` are a starting shape for both. Fill them from a
+   few real examples of the person's own writing, not from a
+   description of their personality.
+4. **Draft section by section.** Show each section as it is done. Keep
+   going if the person does not respond to a section; do not block on
+   approval for every paragraph.
+5. **Hand off to `repair` before calling it done.** A draft is not
+   finished the moment prose exists. Run it through this skill's own
+   `repair` operation, architecture first, so the interview step does
+   not become an excuse to skip the rest of the checklist.
+
+The rule that matters most: the person owns the meaning, the stake, and
+the argument. Draw it out of them, reflect it back in their own words,
+and never hand them a theme or a connection they did not say themselves.
+A model that supplies its own meaning on their behalf is the same
+failure `repair` fixes after the fact, just earlier in the process.
 
 ## Routing
 
